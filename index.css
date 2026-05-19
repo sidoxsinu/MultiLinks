@@ -1,0 +1,340 @@
+/* ==========================================================================
+   DESIGN SYSTEM & VARIABLES
+   ========================================================================== */
+:root {
+  /* Color Tokens */
+  --bg-color: oklch(12% 0.015 250);          /* Fallback deep dark background */
+  --btn-bg: #ffffff;                         /* Pure white button background */
+  --btn-text: #121212;                       /* Dark text inside white buttons */
+  --text-primary: #ffffff;                   /* White header text */
+  --text-secondary: rgba(255, 255, 255, 0.75); /* Translucent details text */
+  
+  /* Layout & Timing */
+  --container-width: 480px;                  /* Standard column clamp width */
+  --transition-smooth: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-bounce: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ==========================================================================
+   RESET & FOUNDATIONS
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.4;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(1rem, 5vh, 3.5rem) 1.25rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 
+   Mobile Safari Background Fix:
+   Using a fixed pseudo-element to render background cover + tint overlay.
+   Prevents background zoom distortions and pixelation bugs on iOS safari.
+*/
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(10, 12, 22, 0.65), rgba(10, 12, 22, 0.65)), 
+              url('images/black-and-white-6480x7454-21293.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -10;
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ==========================================================================
+   UNIFIED PAGE WRAPPER (Centers vertically on large screens, scrolls on small)
+   ========================================================================== */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: auto 0; /* Auto vertical margins center the page vertically if tall, collapses on small viewports */
+  gap: clamp(1.25rem, 4vh, 2.25rem);
+  z-index: 2;
+}
+
+/* ==========================================================================
+   TOP NAVIGATION HUB
+   ========================================================================== */
+.top-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   MAIN DIRECTORY CONTAINER
+   ========================================================================== */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 4vh, 2rem);
+}
+
+/* ==========================================================================
+   PROFILE HEADER COMPONENT
+   ========================================================================== */
+.profile-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-container {
+  position: relative;
+  width: clamp(90px, 12vw + 60px, 110px);
+  height: clamp(90px, 12vw + 60px, 110px);
+  border-radius: 50%;
+  border: clamp(3.5px, 0.8vw, 4.5px) solid #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  margin-bottom: clamp(1rem, 3vh, 1.5rem);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.status-dot-active {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: clamp(12px, 3vw, 16px);
+  height: clamp(12px, 3vw, 16px);
+  border-radius: 50%;
+  background-color: #48bb78;
+  border: clamp(2px, 0.5vw, 3px) solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.3rem, 4vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+}
+
+.profile-tags {
+  font-size: clamp(0.78rem, 2.5vw, 0.85rem);
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  max-width: 380px;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+/* Centered Social Row */
+.social-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.875rem, 3vw, 1.25rem);
+  margin-top: clamp(1rem, 3vh, 1.5rem);
+}
+
+.social-icon-btn {
+  width: clamp(38px, 10vw, 44px);
+  height: clamp(38px, 10vw, 44px);
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.social-icon-btn:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+
+.social-icon-btn:active {
+  transform: scale(0.95);
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.85rem, 2.8vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: clamp(1.5rem, 4vh, 2rem);
+  color: var(--text-primary);
+  opacity: 0.95;
+}
+
+/* ==========================================================================
+   REDIRECT PILL BUTTON LIST
+   ========================================================================== */
+.links-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vh, 0.95rem);
+}
+
+.pill-btn {
+  display: block;
+  width: 100%;
+  padding: clamp(0.95rem, 2.5vw, 1.1rem) clamp(1.5rem, 4vw, 1.75rem);
+  border-radius: 9999px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
+  text-align: center;
+  text-decoration: none;
+  border: 1.5px solid var(--btn-bg);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: var(--transition-bounce);
+}
+
+.pill-btn:hover {
+  transform: scale(1.025);
+  background-color: transparent;
+  color: var(--text-primary);
+  border-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+}
+
+.pill-btn:active {
+  transform: scale(0.975);
+}
+
+/* ==========================================================================
+   FOOTER SECTION
+   ========================================================================== */
+.footer {
+  margin-top: auto;
+  padding-top: clamp(2rem, 6vh, 4rem);
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  opacity: 0.75;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION SYSTEM
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text-primary);
+  color: var(--bg-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY MEDIA QUERIES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
