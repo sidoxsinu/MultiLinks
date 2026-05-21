@@ -99,36 +99,5 @@
     </footer>
 
   </div>
-
-  <!-- Clipboard & Auto-Year Script -->
-  <script>
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    function copyPageLink() {
-      let activeUrl = window.location.href;
-      if (activeUrl.startsWith('file:') || activeUrl.includes('localhost') || activeUrl.includes('127.0.0.1')) {
-        activeUrl = 'https://www.muhammedsinan.in';
-      }
-      
-      navigator.clipboard.writeText(activeUrl)
-        .then(() => showToast('Link copied to clipboard!'))
-        .catch(() => {
-          const input = document.createElement('input');
-          input.value = activeUrl;
-          document.body.appendChild(input);
-          input.select();
-          document.execCommand('copy');
-          document.body.removeChild(input);
-          showToast('Link copied to clipboard!');
-        });
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
-    }
-  </script>
 </body>
 </html>
