@@ -328,3 +328,48 @@ body::before {
     grid-column: span 2;                   /* Center and scale the final resume button across both columns */
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE BUTTON EFFECTS (Ripple & Magnetic)
+   ========================================================================== */
+
+/* Magnetic Pull */
+.magnetic-btn {
+  /* Using a custom smooth cubic-bezier for transform prevents wobbly bouncing on hover */
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* Ripple Base */
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-btn::before {
+  content: '';
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  width: 0;
+  height: 0;
+  /* Use a slightly transparent white for the ripple effect on both solid white and transparent backgrounds */
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ripple-btn:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.ripple-btn span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
