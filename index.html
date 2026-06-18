@@ -13,11 +13,20 @@
   
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="index.css">
+  <link rel="preload" as="image" href="images/profile_no_bg.png" type="image/png" fetchpriority="high">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
 </head>
 <body>
-
-  <!-- Unified wrapper for seamless centering and scrolling across all device types -->
-  <div class="page-wrapper">
+  <div id="pixel-blast-bg"></div>
+  <div class="app-layout">
+    <!-- Unified wrapper for seamless centering and scrolling across all device types -->
+    <div class="page-wrapper">
     
     <!-- Main Content Container -->
     <main class="container">
@@ -25,7 +34,7 @@
       <!-- Profile Header Area -->
       <section class="profile-header">
         <div class="avatar-container">
-          <img src="images/1748772851652.jpeg" alt="Muhammed Sinan M" class="avatar-image">
+          <img src="images/profile_no_bg.png" alt="Muhammed Sinan M" class="avatar-image">
           <span class="status-dot-active" title="Available for Projects"></span>
         </div>
         
@@ -98,7 +107,10 @@
       <p>© <span id="current-year">2026</span> Muhammed Sinan M. All rights reserved.</p>
     </footer>
 
+    </div>
   </div>
-  <script src="animations.js"></script>
+  <script type="module" src="pixel-blast.js"></script>
+  <script type="module" src="lanyard.js"></script>
+  <script type="module" src="animations.js"></script>
 </body>
 </html>
