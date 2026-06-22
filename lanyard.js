@@ -1,7 +1,8 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import cardUrl from './assets/lanyard/card.glb';
-import profileImgUrl from './images/profile_no_bg.png';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const cardUrl = './assets/lanyard/card.glb';
+const profileImgUrl = './images/profile_no_bg.png';
 
 // Configuration
 const LANYARD_WIDTH = 0.085;
@@ -10,6 +11,7 @@ const SEGMENT_LENGTH = 0.35;
 const GRAVITY = new THREE.Vector3(0, -32, 0);
 const DAMPING = 0.98;
 const PHYSICS_SUBSTEPS = 12;
+const CARD_OFFSET = 1.4; // Fixed from 2.7 to properly connect the string to the top of the ID card hole
 
 let container, scene, camera, renderer, clock;
 let lanyardTexture, cardGLB;
@@ -497,7 +499,7 @@ function onPointerMove(e) {
     const parentPos = nodes[NUM_NODES - 2].pos;
     // Compute stable up direction from target card position to the parent rope node
     const upVec = new THREE.Vector3().subVectors(parentPos, targetCardPos).normalize();
-    const cardOffset = upVec.clone().multiplyScalar(-2.7);
+    const cardOffset = upVec.clone().multiplyScalar(-CARD_OFFSET);
     
     const targetNodePos = targetCardPos.clone().sub(cardOffset);
     
@@ -597,7 +599,7 @@ function updatePhysics(dt) {
 
     cardGLB.rotateY(twistAngle);
 
-    const cardOffset = upVec.clone().multiplyScalar(-2.7);
+    const cardOffset = upVec.clone().multiplyScalar(-CARD_OFFSET);
     cardGLB.position.copy(cardPos).add(cardOffset);
   }
 }
