@@ -1,0 +1,535 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-accent-orange: #E54D2E;
+  --color-bg-primary: #111111;
+  --color-bg-secondary: #141414;
+  --color-bg-card: #161616;
+  --color-bg-card-hover: #1f1f1f;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #999999;
+  --color-text-muted: #666666;
+
+  --font-heading: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --bg-color: #111111;
+  --accent-orange: #E54D2E;
+  --font-heading: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+/* ==========================================================================
+   RESET & FOUNDATIONS
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  min-height: 100%;
+  background-color: var(--bg-color);
+  color: #ffffff;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: #ffffff;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   GLOBAL NATIVE CURSOR SUPPRESSION ON FINE POINTERS
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  html.hide-native-cursor,
+  html.hide-native-cursor body,
+  html.hide-native-cursor *,
+  html.hide-native-cursor *::before,
+  html.hide-native-cursor *::after {
+    cursor: none !important;
+  }
+}
+
+/* Custom Blend-mode Cursor Dot */
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  mix-blend-mode: difference;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.cursor-hover .cursor-dot {
+  width: 44px;
+  height: 44px;
+  mix-blend-mode: normal;
+  background: rgba(229, 77, 46, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 20px rgba(229, 77, 46, 0.6);
+}
+
+body.cursor-active .cursor-dot {
+  transform: translate(-50%, -50%) scale(0.85);
+  background: rgba(229, 77, 46, 1);
+  box-shadow: 0 0 28px rgba(229, 77, 46, 0.8);
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  #cursorDot {
+    display: none !important;
+  }
+  html.hide-native-cursor,
+  html.hide-native-cursor body,
+  html.hide-native-cursor * {
+    cursor: auto !important;
+  }
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBAR
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 77, 46, 0.4);
+}
+
+/* ==========================================================================
+   GLASSMORPHIC CARD STYLING & SPOTLIGHT GLOW
+   ========================================================================== */
+.glass-panel {
+  background: rgba(22, 22, 22, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 48px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.action-card {
+  position: relative;
+  background: rgba(22, 22, 22, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.15rem 1.25rem;
+  transition: 
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.action-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--card-x, 50%) var(--card-y, 50%),
+    rgba(229, 77, 46, 0.08),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.action-card:hover {
+  background-color: #1a1a1a;
+  border-color: rgba(229, 77, 46, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 0 16px rgba(229, 77, 46, 0.15);
+}
+
+.action-card:hover::before {
+  opacity: 1;
+}
+
+.action-card:active {
+  transform: translateY(0);
+}
+
+/* Primary CTA Resume Button */
+.cta-resume-card {
+  background: rgba(229, 77, 46, 0.08);
+  border: 1px solid rgba(229, 77, 46, 0.4);
+  box-shadow: 0 4px 20px rgba(229, 77, 46, 0.15);
+}
+
+.cta-resume-card:hover {
+  background-color: var(--accent-orange);
+  border-color: var(--accent-orange);
+  box-shadow: 
+    0 10px 30px rgba(229, 77, 46, 0.4),
+    0 0 20px rgba(229, 77, 46, 0.3);
+}
+
+.cta-resume-card:hover .cta-text-title,
+.cta-resume-card:hover .cta-icon,
+.cta-resume-card:hover .cta-text-sub {
+  color: #ffffff !important;
+}
+
+/* Quick Social Micro-Buttons */
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #999999;
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .social-icon-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.social-icon-btn:hover {
+  color: #ffffff;
+  border-color: rgba(229, 77, 46, 0.5);
+  background: rgba(229, 77, 46, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 77, 46, 0.2);
+}
+
+/* Live Pulse Pill */
+.pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #999999;
+  transition: border-color 0.2s ease;
+}
+
+.pulse-badge:hover {
+  border-color: rgba(229, 77, 46, 0.4);
+}
+
+.pulse-dot {
+  position: relative;
+  display: flex;
+  width: 7px;
+  height: 7px;
+}
+
+.pulse-dot-ping {
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  background-color: #10b981;
+  opacity: 0.75;
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.pulse-dot-solid {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px;
+  height: 7px;
+  width: 7px;
+  background-color: #10b981;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   LANYARD 3D HANGING ID BADGE
+   ========================================================================== */
+.lanyard-badge-column {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Hanging Fabric Ribbon Strap */
+.lanyard-strap {
+  position: relative;
+  width: 30px;
+  height: 70px;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      #0e0e0e,
+      #0e0e0e 3px,
+      #161616 3px,
+      #161616 6px
+    );
+  border-left: 1px solid rgba(229, 77, 46, 0.4);
+  border-right: 1px solid rgba(229, 77, 46, 0.4);
+  box-shadow: 
+    inset 0 0 8px rgba(0, 0, 0, 0.8),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.lanyard-strap::after {
+  content: 'SINAN // DEV // 2026';
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.25);
+  user-select: none;
+}
+
+/* Metallic Hook / Swivel Ring */
+.lanyard-hardware {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 12;
+  margin-top: -2px;
+}
+
+.lanyard-clip-base {
+  width: 22px;
+  height: 8px;
+  background: linear-gradient(180deg, #444444 0%, #1a1a1a 100%);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.lanyard-swivel-ring {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid #555555;
+  background: transparent;
+  margin: -3px 0;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.lanyard-hook {
+  width: 16px;
+  height: 18px;
+  background: linear-gradient(135deg, #555 0%, #222 50%, #444 100%);
+  border-radius: 3px 3px 6px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Frosted Glass Badge Card Body */
+.lanyard-card {
+  position: relative;
+  width: 280px;
+  background: rgba(22, 22, 22, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  overflow: hidden;
+  padding: 1.5rem 1.25rem;
+  margin-top: -6px;
+  z-index: 15;
+  user-select: none;
+  cursor: grab;
+  transition: border-color 0.3s ease;
+}
+
+.lanyard-card:hover,
+.lanyard-card.badge-hovered {
+  border-color: rgba(229, 77, 46, 0.45);
+}
+
+/* Card Slot Punch Hole */
+.badge-slot-hole {
+  width: 44px;
+  height: 8px;
+  background: #090909;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0 auto 1.25rem auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Holographic Sheen Overlay */
+.holographic-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(229, 77, 46, 0.09) 30%,
+    transparent 65%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+}
+
+/* Security Hologram Microchip */
+.security-chip {
+  width: 32px;
+  height: 24px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #b8860b 0%, #ffd700 50%, #8b6508 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.security-chip::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px dashed rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+
+/* Technical Badges in Card */
+.tech-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #999999;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1c1c1c;
+  color: #ffffff;
+  border: 1px solid rgba(229, 77, 46, 0.5);
+  padding: 0.75rem 1.4rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(229, 77, 46, 0.25);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toast-container.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   REDUCED MOTION PREFERENCES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

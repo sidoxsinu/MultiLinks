@@ -3,113 +3,639 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammed Sinan M | Link Hub</title>
-  <meta name="description" content="Central link directory for Muhammed Sinan M. Software developer specializing in Web apps and AI systems.">
-  
-  <!-- Modern Fonts -->
+  <title>Muhammed Sinan M // Contact & Link Hub</title>
+  <meta name="description" content="Official contact portal and links directory of Muhammed Sinan M — Full-Stack Engineer, Software Engineering Intern, and AI Systems Builder.">
+  <link rel="canonical" href="https://contact.muhammedsinan.in">
+  <meta name="theme-color" content="#111111">
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://contact.muhammedsinan.in">
+  <meta property="og:title" content="Muhammed Sinan M // Contact & Link Hub">
+  <meta property="og:description" content="Full-Stack Engineer, Software Engineering Intern & AI Systems Builder. Connect directly, schedule calls, or view portfolios.">
+  <meta property="og:image" content="https://muhammedsinan.in/images/og-image.jpg">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@sidoxsinu">
+  <meta name="twitter:creator" content="@sidoxsinu">
+  <meta name="twitter:title" content="Muhammed Sinan M // Contact & Link Hub">
+  <meta name="twitter:description" content="Full-Stack Engineer, Software Engineering Intern & AI Systems Builder.">
+
+  <!-- Fonts: Fontshare via CDN (General Sans & Space Grotesk) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-  
-  <!-- CSS Stylesheet -->
-  <link rel="preload" as="image" href="/assets/profile_no_bg-CzijrGL-.png" type="image/png" fetchpriority="high">
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=space-grotesk@400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'accent-orange': '#E54D2E',
+            'neutral-dark': '#111111',
+            'card-dark': '#161616',
+          },
+          fontFamily: {
+            heading: ['"General Sans"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace'],
+            body: ['"Space Grotesk"', 'sans-serif'],
+          }
+        }
       }
     }
   </script>
-  <script type="module" crossorigin src="/assets/index-Ba_anc6P.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-zmYIo_I4.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="preload" as="image" href="images/profile_no_bg.png" type="image/png" fetchpriority="high">
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
-<body>
-  <div id="pixel-blast-bg"></div>
-  <div class="app-layout">
-    <!-- Unified wrapper for seamless centering and scrolling across all device types -->
-    <div class="page-wrapper">
+<body class="bg-[#111111] text-white selection:bg-[#E54D2E] selection:text-white">
+
+  <!-- Interactive Dot Matrix Canvas Background -->
+  <div id="dot-field-bg" aria-hidden="true"></div>
+
+  <!-- Smooth Blend-Mode Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- Page Layout Wrapper -->
+  <div class="relative z-10 flex min-h-screen w-full flex-col items-center justify-between px-3 py-6 sm:px-6 sm:py-10 md:px-8">
     
-    <!-- Main Content Container -->
-    <main class="container">
+    <!-- Top Minimal Navigation Accent Header -->
+    <header class="w-full max-w-6xl flex justify-between items-center py-2 mb-2 sm:mb-4 px-1">
+      <a href="https://muhammedsinan.in" class="group flex items-center gap-2 font-mono text-xs text-neutral-400 hover:text-white transition-colors" data-clickable="true">
+        <span class="text-[var(--accent-orange)] font-semibold">//</span>
+        <span>muhammedsinan.in</span>
+        <span class="text-neutral-600 group-hover:text-neutral-400 transition-colors">↗</span>
+      </a>
+
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-mono text-[11px] tracking-wider text-neutral-400 uppercase hidden sm:inline-block">HUB ONLINE</span>
+      </div>
+    </header>
+
+    <!-- Main Content Stage: 2-Column Responsive Composition (Profile & Lanyard) -->
+    <main class="w-full max-w-6xl flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-12 my-auto">
       
-      <!-- Profile Header Area -->
-      <section class="profile-header">
-        <div class="avatar-container">
-          <img src="/assets/profile_no_bg-CzijrGL-.png" alt="Muhammed Sinan M" class="avatar-image">
-          <span class="status-dot-active" title="Available for Projects"></span>
-        </div>
+      <!-- LEFT COLUMN: Profile & Interactive Action Cards -->
+      <section class="w-full max-w-2xl flex flex-col items-center sm:items-stretch glass-panel p-5 sm:p-8 md:p-9 rounded-3xl" aria-label="Profile and Contact Directory">
         
-        <h1 class="profile-name">MUHAMMED SINAN M</h1>
-        
-        <p class="profile-tags">
-          | Software Developer | Full-Stack Engineer | AI Systems Builder |
-        </p>
-
-        <!-- Social Connections Row -->
-        <div class="social-row">
-          <a href="https://wa.me/918590568566?text=Hi%20Muhammed%20Sinan%2C%20I%20visited%20your%20Link%20Hub%20and%20wanted%20to%20connect%21" target="_blank" rel="noopener noreferrer" class="social-icon-btn ripple-btn magnetic-btn" aria-label="WhatsApp">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-          </a>
-          <a href="tel:+918590568566" class="social-icon-btn ripple-btn magnetic-btn" aria-label="Call">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          </a>
-          <a href="mailto:muhammedsinan.m67@gmail.com" class="social-icon-btn ripple-btn magnetic-btn" aria-label="Email">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-          </a>
-          <a href="https://www.muhammedsinan.in" target="_blank" rel="noopener noreferrer" class="social-icon-btn ripple-btn magnetic-btn" aria-label="Portfolio">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
-          </a>
-          <a href="https://www.linkedin.com/in/sidoxsinu" target="_blank" rel="noopener noreferrer" class="social-icon-btn ripple-btn magnetic-btn" aria-label="LinkedIn">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></span>
-          </a>
-          <a href="https://github.com/sidoxsinu" target="_blank" rel="noopener noreferrer" class="social-icon-btn ripple-btn magnetic-btn" aria-label="GitHub">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
-          </a>
+        <!-- Live Status Pill -->
+        <div class="anim-header self-center mb-6">
+          <div class="pulse-badge" data-clickable="true">
+            <span class="pulse-dot">
+              <span class="pulse-dot-ping"></span>
+              <span class="pulse-dot-solid"></span>
+            </span>
+            <span>// STATUS: OPEN FOR NEW PROJECTS & COLLABORATION</span>
+          </div>
         </div>
 
-        <h2 class="section-title">Software Development</h2>
+        <!-- Profile Header Area -->
+        <div class="anim-header flex flex-col items-center text-center mb-7">
+          <!-- Profile Photo with Active Indicator -->
+          <div class="relative mb-5 group" data-clickable="true">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl p-1 bg-gradient-to-b from-white/15 to-white/5 border border-white/10 shadow-xl overflow-hidden transition-transform duration-300 group-hover:scale-105">
+              <div class="w-full h-full rounded-xl bg-neutral-900 flex items-center justify-center overflow-hidden">
+                <img 
+                  src="images/profile_no_bg.png" 
+                  alt="Muhammed Sinan M" 
+                  class="w-full h-full object-cover object-top" 
+                  width="112" 
+                  height="112"
+                >
+              </div>
+            </div>
+            <!-- Active Green Badge -->
+            <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-[#161616] flex items-center justify-center shadow-lg" title="Online & Available">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </span>
+          </div>
+
+          <!-- Name & Role -->
+          <h1 class="font-heading text-2xl sm:text-3xl font-semibold tracking-[-0.03em] uppercase text-white mb-2">
+            MUHAMMED SINAN M
+          </h1>
+          <p class="font-mono text-xs sm:text-sm text-neutral-400 font-normal tracking-wide max-w-md sm:max-w-none">
+            Full-Stack Engineer <span class="text-[var(--accent-orange)]">·</span> Software Engineering Intern <span class="text-[var(--accent-orange)]">·</span> AI Builder
+          </p>
+
+          <!-- Quick Social Icons Row (Single Clean Row on All Devices) -->
+          <div class="flex items-center justify-center gap-1.5 sm:gap-2.5 mt-5">
+            <!-- WhatsApp -->
+            <a 
+              href="https://wa.me/918590568566?text=Hi%20Muhammed%20Sinan%2C%20I%20visited%20your%20Link%20Hub%20and%20wanted%20to%20connect%21" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="WhatsApp Direct Chat" 
+              title="WhatsApp"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </a>
+
+            <!-- Call / Phone -->
+            <a 
+              href="tel:+918590568566" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="Call Directly" 
+              title="Phone Call"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </a>
+
+            <!-- Email -->
+            <a 
+              href="mailto:muhammedsinan.m67@gmail.com" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="Send Email" 
+              title="Email"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </a>
+
+            <!-- Portfolio -->
+            <a 
+              href="https://muhammedsinan.in" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="Primary Portfolio Website" 
+              title="Main Portfolio"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a 
+              href="https://linkedin.com/in/sidoxsinu" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="LinkedIn Profile" 
+              title="LinkedIn"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect width="4" height="12" x="2" y="9"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a 
+              href="https://github.com/sidoxsinu" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="GitHub Repositories" 
+              title="GitHub"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                <path d="M9 18c-4.51 2-5-2-7-2"/>
+              </svg>
+            </a>
+
+            <!-- X / Twitter -->
+            <a 
+              href="https://x.com/sidoxsinu" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="anim-social-btn social-icon-btn magnetic-btn" 
+              aria-label="X Twitter Account" 
+              title="X / Twitter"
+              data-clickable="true"
+            >
+              <svg class="w-4 h-4 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z"/>
+                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Section Label -->
+        <div class="anim-section-title flex items-center justify-between mb-4 px-1 border-t border-white/[0.08] pt-5">
+          <span class="font-mono text-[11px] tracking-wider text-neutral-400 uppercase flex items-center gap-1.5">
+            <span class="text-[var(--accent-orange)]">//</span> DIRECT COMMUNICATION & ECOSYSTEM
+          </span>
+          <span class="font-mono text-[10px] text-neutral-500 hidden sm:inline-block">2-COLUMN GRID</span>
+        </div>
+
+        <!-- Sleek Dark Glassmorphic Action Cards: 2-Column Responsive Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full">
+          
+          <!-- 1. WhatsApp Card -->
+          <a 
+            href="https://wa.me/918590568566?text=Hi%20Muhammed%20Sinan%2C%20I%20visited%20your%20Link%20Hub%20and%20wanted%20to%20connect%21" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="anim-card action-card group"
+            data-clickable="true"
+          >
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[var(--accent-orange)]/40 group-hover:bg-[var(--accent-orange)]/10 transition-colors">
+                <svg class="w-5 h-5 text-[#25D366]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-heading text-sm font-medium text-white group-hover:text-[var(--accent-orange)] transition-colors">
+                  WhatsApp
+                </span>
+                <span class="font-mono text-[11px] text-neutral-400">
+                  Direct chat & inquiry
+                </span>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+
+          <!-- 2. Email Card with One-Click Copy Feedback -->
+          <div 
+            class="anim-card action-card group email-copy-trigger cursor-pointer"
+            data-email="muhammedsinan.m67@gmail.com"
+            title="Click to copy email address"
+            data-clickable="true"
+            role="button"
+            tabindex="0"
+          >
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[var(--accent-orange)]/40 group-hover:bg-[var(--accent-orange)]/10 transition-colors">
+                <svg class="w-5 h-5 text-neutral-300 email-default-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                <svg class="w-5 h-5 text-emerald-400 email-check-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-heading text-sm font-medium text-white email-card-label group-hover:text-[var(--accent-orange)] transition-colors">
+                  Email
+                </span>
+                <span class="font-mono text-[11px] text-neutral-400 email-card-sub truncate">
+                  muhammedsinan.m67@gmail.com
+                </span>
+              </div>
+            </div>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-neutral-500 group-hover:text-white shrink-0 border border-white/10 px-2 py-0.5 rounded">
+              COPY
+            </span>
+          </div>
+
+          <!-- 3. Schedule a Call Card -->
+          <a 
+            href="tel:+918590568566" 
+            class="anim-card action-card group"
+            data-clickable="true"
+          >
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[var(--accent-orange)]/40 group-hover:bg-[var(--accent-orange)]/10 transition-colors">
+                <svg class="w-5 h-5 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-heading text-sm font-medium text-white group-hover:text-[var(--accent-orange)] transition-colors">
+                  Schedule a Call
+                </span>
+                <span class="font-mono text-[11px] text-neutral-400">
+                  Direct phone & voice
+                </span>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+
+          <!-- 4. Main Portfolio Card (with Live Site Indicator) -->
+          <a 
+            href="https://muhammedsinan.in" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="anim-card action-card group"
+            data-clickable="true"
+          >
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[var(--accent-orange)]/40 group-hover:bg-[var(--accent-orange)]/10 transition-colors">
+                <svg class="w-5 h-5 text-[var(--accent-orange)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                  <path d="M2 12h20"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-heading text-sm font-medium text-white group-hover:text-[var(--accent-orange)] transition-colors">
+                    Main Portfolio
+                  </span>
+                  <span class="inline-flex items-center gap-1 font-mono text-[9px] text-emerald-400 font-semibold bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    LIVE
+                  </span>
+                </div>
+                <span class="font-mono text-[11px] text-neutral-400">
+                  muhammedsinan.in
+                </span>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+
+          <!-- 5. GitHub Card (with Repo / Follower Highlight) -->
+          <a 
+            href="https://github.com/sidoxsinu" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="anim-card action-card group"
+            data-clickable="true"
+          >
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[var(--accent-orange)]/40 group-hover:bg-[var(--accent-orange)]/10 transition-colors">
+                <svg class="w-5 h-5 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                  <path d="M9 18c-4.51 2-5-2-7-2"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-heading text-sm font-medium text-white group-hover:text-[var(--accent-orange)] transition-colors">
+                  GitHub
+                </span>
+                <span class="font-mono text-[11px] text-neutral-400">
+                  @sidoxsinu · Repos & AI
+                </span>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+
+          <!-- 6. LinkedIn Card -->
+          <a 
+            href="https://linkedin.com/in/sidoxsinu" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="anim-card action-card group"
+            data-clickable="true"
+          >
+            <div class="flex items-center gap-3.5 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 group-hover:border-[var(--accent-orange)]/40 group-hover:bg-[var(--accent-orange)]/10 transition-colors">
+                <svg class="w-5 h-5 text-[#0A66C2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect width="4" height="12" x="2" y="9"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-heading text-sm font-medium text-white group-hover:text-[var(--accent-orange)] transition-colors">
+                  LinkedIn
+                </span>
+                <span class="font-mono text-[11px] text-neutral-400">
+                  Professional Network
+                </span>
+              </div>
+            </div>
+            <svg class="w-4 h-4 text-neutral-500 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7"/>
+              <path d="M7 7h10v10"/>
+            </svg>
+          </a>
+
+          <!-- 7. FEATURED PRIMARY CTA: Download Resume (PDF) [Spans Full Width] -->
+          <a 
+            href="Muhammed_Sinan_M.pdf" 
+            download="Muhammed_Sinan_M.pdf" 
+            class="anim-card action-card cta-resume-card group col-span-1 sm:col-span-2 !py-4"
+            data-clickable="true"
+          >
+            <div class="flex items-center gap-4 min-w-0">
+              <div class="w-11 h-11 rounded-xl bg-[var(--accent-orange)]/15 border border-[var(--accent-orange)]/40 flex items-center justify-center shrink-0 group-hover:bg-white/20 transition-colors">
+                <svg class="w-5 h-5 text-[var(--accent-orange)] cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+                  <path d="M12 18v-6"/>
+                  <path d="m9 15 3 3 3-3"/>
+                </svg>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="font-heading text-base font-semibold text-white cta-text-title transition-colors">
+                    Download Resume (PDF)
+                  </span>
+                  <span class="font-mono text-[10px] uppercase tracking-wider text-orange-300 font-semibold bg-orange-500/20 px-2 py-0.5 rounded border border-orange-500/30">
+                    UPDATED 2026
+                  </span>
+                </div>
+                <span class="font-mono text-xs text-neutral-300 cta-text-sub transition-colors truncate">
+                  Engineering, Architecture & AI Project Track Records
+                </span>
+              </div>
+            </div>
+            <div class="shrink-0 flex items-center gap-1 font-mono text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 group-hover:bg-white text-white group-hover:text-black transition-colors">
+              <span>PDF ⤓</span>
+            </div>
+          </a>
+
+        </div>
+
       </section>
 
-      <!-- Redirect Links -->
-      <section class="links-container" aria-label="Redirect Buttons">
-        <a href="https://wa.me/918590568566?text=Hi%20Muhammed%20Sinan%2C%20I%20visited%20your%20Link%20Hub%20and%20wanted%20to%20connect%21" target="_blank" rel="noopener noreferrer" class="pill-btn ripple-btn magnetic-btn" id="btn-whatsapp">
-          <span>WhatsApp</span>
-        </a>
+      <!-- RIGHT COLUMN: Interactive 3D Lanyard ID Badge (Modern Polish) -->
+      <aside class="lanyard-badge-column shrink-0" id="lanyard-badge-wrapper" aria-label="Interactive 3D Engineering ID Badge">
+        
+        <!-- Mobile Section Identifier -->
+        <div class="lg:hidden font-mono text-[11px] tracking-wider text-neutral-400 uppercase mb-2 flex items-center gap-1.5">
+          <span class="text-[var(--accent-orange)]">//</span> VERIFIED ID BADGE
+        </div>
 
-        <a href="tel:+918590568566" class="pill-btn ripple-btn magnetic-btn" id="btn-call">
-          <span>Call</span>
-        </a>
+        <!-- Woven Fabric Lanyard Strap Hanging from Viewport Top -->
+        <div class="lanyard-strap" aria-hidden="true"></div>
 
-        <a href="mailto:muhammedsinan.m67@gmail.com" class="pill-btn ripple-btn magnetic-btn" id="btn-email">
-          <span>Email</span>
-        </a>
+        <!-- Metallic Ring & Swivel Clip Hardware -->
+        <div class="lanyard-hardware" aria-hidden="true">
+          <div class="lanyard-clip-base"></div>
+          <div class="lanyard-swivel-ring"></div>
+          <div class="lanyard-hook"></div>
+        </div>
 
-        <a href="https://www.muhammedsinan.in" target="_blank" rel="noopener noreferrer" class="pill-btn ripple-btn magnetic-btn" id="btn-portfolio">
-          <span>Portfolio</span>
-        </a>
+        <!-- Matte Frosted Glass ID Badge Card Body -->
+        <div class="lanyard-card" id="lanyard-badge-card" data-clickable="true" role="region" aria-label="Sinan's Verification Badge">
+          
+          <!-- Holographic Light Reflection Sheen (Follows Mouse Movement --mx, --my) -->
+          <div class="holographic-sheen" aria-hidden="true"></div>
 
-        <a href="https://www.linkedin.com/in/sidoxsinu" target="_blank" rel="noopener noreferrer" class="pill-btn ripple-btn magnetic-btn" id="btn-linkedin">
-          <span>LinkedIn</span>
-        </a>
+          <!-- Top Badge Slot Cutout Hole -->
+          <div class="badge-slot-hole" aria-hidden="true"></div>
 
-        <a href="https://github.com/sidoxsinu" target="_blank" rel="noopener noreferrer" class="pill-btn ripple-btn magnetic-btn" id="btn-github">
-          <span>GitHub</span>
-        </a>
+          <!-- Card Header: Security Foil & Category -->
+          <div class="flex items-center justify-between mb-5 px-1">
+            <div class="security-chip" title="Verified Engineering Chip"></div>
+            <div class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase">
+              MEMBER BADGE <span class="text-[var(--accent-orange)]">//</span> DEV
+            </div>
+          </div>
 
-        <a href="Muhammed_Sinan_M.pdf" download="Muhammed_Sinan_M.pdf" class="pill-btn ripple-btn magnetic-btn" id="btn-resume">
-          <span>Download Resume</span>
-        </a>
-      </section>
+          <!-- Centered Profile Photo in Halo Ring -->
+          <div class="flex flex-col items-center text-center mb-4">
+            <div class="relative mb-3">
+              <div class="w-20 h-20 rounded-full p-1 bg-gradient-to-tr from-[var(--accent-orange)]/60 via-white/20 to-[var(--accent-orange)]/30 border border-white/20 shadow-[0_0_20px_rgba(229,77,46,0.25)]">
+                <div class="w-full h-full rounded-full bg-[#181818] overflow-hidden flex items-center justify-center">
+                  <img 
+                    src="images/profile_no_bg.png" 
+                    alt="Sinan Profile" 
+                    class="w-full h-full object-cover object-top"
+                    width="76"
+                    height="76"
+                  >
+                </div>
+              </div>
+              <span class="absolute bottom-0 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#161616]" title="Active"></span>
+            </div>
+
+            <!-- Identity Name -->
+            <h2 class="font-heading text-lg font-bold tracking-tight text-white uppercase mb-1">
+              MUHAMMED SINAN M
+            </h2>
+
+            <!-- Technical Badges -->
+            <div class="flex items-center gap-1.5 flex-wrap justify-center mt-1">
+              <span class="tech-tag">Full-Stack Developer</span>
+              <span class="tech-tag">SDE Intern</span>
+            </div>
+          </div>
+
+          <!-- Frosted Divider Line -->
+          <div class="w-full border-t border-white/[0.08] my-3.5"></div>
+
+          <!-- Barcode & Identification String -->
+          <div class="px-2">
+            <!-- Vector Barcode Lines -->
+            <svg class="w-full h-9 text-white/75" viewBox="0 0 180 32" fill="currentColor" aria-hidden="true">
+              <rect x="0" y="0" width="2.5" height="32" />
+              <rect x="5" y="0" width="1" height="32" />
+              <rect x="8" y="0" width="3" height="32" />
+              <rect x="13" y="0" width="2" height="32" />
+              <rect x="17" y="0" width="4" height="32" />
+              <rect x="23" y="0" width="1" height="32" />
+              <rect x="26" y="0" width="2" height="32" />
+              <rect x="30" y="0" width="3.5" height="32" />
+              <rect x="36" y="0" width="1" height="32" />
+              <rect x="39" y="0" width="4" height="32" />
+              <rect x="45" y="0" width="2" height="32" />
+              <rect x="49" y="0" width="1.5" height="32" />
+              <rect x="52" y="0" width="3" height="32" />
+              <rect x="57" y="0" width="2" height="32" />
+              <rect x="61" y="0" width="4" height="32" />
+              <rect x="67" y="0" width="1" height="32" />
+              <rect x="70" y="0" width="2" height="32" />
+              <rect x="74" y="0" width="4.5" height="32" />
+              <rect x="81" y="0" width="1" height="32" />
+              <rect x="84" y="0" width="3" height="32" />
+              <rect x="89" y="0" width="2" height="32" />
+              <rect x="93" y="0" width="1" height="32" />
+              <rect x="96" y="0" width="4" height="32" />
+              <rect x="102" y="0" width="2" height="32" />
+              <rect x="106" y="0" width="3" height="32" />
+              <rect x="111" y="0" width="1" height="32" />
+              <rect x="114" y="0" width="2.5" height="32" />
+              <rect x="119" y="0" width="4" height="32" />
+              <rect x="125" y="0" width="1" height="32" />
+              <rect x="128" y="0" width="3" height="32" />
+              <rect x="133" y="0" width="2" height="32" />
+              <rect x="137" y="0" width="4" height="32" />
+              <rect x="143" y="0" width="1.5" height="32" />
+              <rect x="146" y="0" width="2" height="32" />
+              <rect x="150" y="0" width="3.5" height="32" />
+              <rect x="155" y="0" width="1" height="32" />
+              <rect x="158" y="0" width="4" height="32" />
+              <rect x="164" y="0" width="2" height="32" />
+              <rect x="168" y="0" width="1" height="32" />
+              <rect x="171" y="0" width="3" height="32" />
+              <rect x="176" y="0" width="4" height="32" />
+            </svg>
+            <p class="font-mono text-[10px] tracking-[0.25em] text-neutral-400 uppercase text-center mt-1.5 font-medium">
+              ID: SINAN-2026-ENG
+            </p>
+          </div>
+
+          <!-- Micro Hint -->
+          <div class="mt-3 text-center">
+            <span class="font-mono text-[9px] text-neutral-500 uppercase tracking-wider">
+              [ HOVER / DRAG TO TILT ]
+            </span>
+          </div>
+
+        </div>
+
+      </aside>
 
     </main>
 
-    <!-- Footer Area (contained inside the wrapper to scale with columns) -->
-    <footer class="footer">
-      <p>© <span id="current-year">2026</span> Muhammed Sinan M. All rights reserved.</p>
+    <!-- Editorial Footer -->
+    <footer class="anim-footer w-full max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left py-6 mt-4 border-t border-white/[0.06] px-1">
+      <p class="font-mono text-xs text-neutral-500">
+        © <span id="current-year">2026</span> Muhammed Sinan M. All rights reserved.
+      </p>
+      <div class="flex items-center gap-4 font-mono text-xs text-neutral-500">
+        <a href="https://muhammedsinan.in" class="hover:text-[var(--accent-orange)] transition-colors" data-clickable="true">Portfolio ↗</a>
+        <span>·</span>
+        <a href="https://github.com/sidoxsinu" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-orange)] transition-colors" data-clickable="true">GitHub ↗</a>
+        <span>·</span>
+        <a href="https://linkedin.com/in/sidoxsinu" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-orange)] transition-colors" data-clickable="true">LinkedIn ↗</a>
+      </div>
     </footer>
 
-    </div>
   </div>
+
+  <!-- Interactive Floating Toast for Copy Feedback -->
+  <div class="toast-container" id="toast" role="status" aria-live="polite">
+    <svg class="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+    <span class="toast-msg">Email copied to clipboard!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="dotfield.js"></script>
+  <script type="module" src="lanyard.js"></script>
+  <script type="module" src="animations.js"></script>
+
 </body>
 </html>
